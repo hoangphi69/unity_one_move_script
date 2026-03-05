@@ -38,6 +38,7 @@ Haizzzzz...Chán vậy nhể!!! #speaker:Nam #sprite:nam_bored #bg:dom
 === ch1_Window ===
 Sau khi kéo rèm cửa có tia sáng chiếu rọi khắp phòng trải lên khuôn mặt Nam một ánh vàng với nét mặt buồn vì chán khi mất dần động lực. #bg:dom_pull_curtain
 Mình đang làm gì với đời vậy nhờ?? #speaker:Nam #sprite:nam_thinking 
+// TODO: Nam quyết định touch grass
     -> ch1_Interact_Phone
     
 // ----------- Tại lobby tương tác với điện thoại ----------
@@ -78,7 +79,7 @@ Lỡ mà kéo nó xuống chung với mình thì sao? #speaker:Nam #sprite:nam_t
     
 === ch1_Accept ===
 "Kay" #speaker:Nam #sprite:nam_smile
-"Công việc thế nảo hả, cộng sự" #speaker:Nam #sprite:nam_smile
+"Công việc thế nào hả, cộng sự" #speaker:Nam #sprite:nam_smile
 ~ accept_invitation = true
 -> DONE
 
@@ -86,17 +87,20 @@ Lỡ mà kéo nó xuống chung với mình thì sao? #speaker:Nam #sprite:nam_t
 Hiện tại bạn có 0 thông báo.
 -> DONE
 
+
+// ----------- Cutscene sau lobby1 ----------
 === ch1_OneWeekLater ===
 #bg:one_week_later
 -> ch1_IdeaLoop
 
-// ----------- Cutscene sau lobby1 ----------
 === ch1_IdeaLoop ===
-Đồ án làm thử AI không? #speaker:Phong #sprite:phong_talk
+Đồ án làm thử AI không? #speaker:Phong #sprite:phong_talk 
 Hả? Làm thử? Mày tính làm thử AI á? #speaker:Nam #sprite:nam_talk
 Mày biết đồ án AI nặng cỡ nào không?  #speaker:Nam #sprite:nam_talk
 Từ lọc cả ngàn ảnh, đánh dấu vật thể, gắn tag cho từng ảnh thôi là cực hình rồi. #speaker:Nam #sprite:nam_talk
 Chưa tính đến code hay ý tưởng đề tài phải thật sáng tạo thì mày nhắm 2 đứa làm nổi không? #speaker:Nam #sprite:nam_talk
+... #speaker:Phong #sprite:phong_thinking
+...Mày nói đúng, còn ý tưởng nào khác không? #speaker:Phong #sprite:phong_talk
 
 Thế sao hai đứa không thử làm Web? #speaker:Nam #sprite:nam_thinking
 Ờ, rồi làm giống mấy chục nhóm khác. #speaker:Phong #sprite:phong_talk
@@ -116,18 +120,7 @@ Vừa ngồi học vừa làm à? #speaker:Nam #sprite:nam_bored
 
 ... #speaker:Nam #sprite:nam_exhaust
 ... #speaker:Phong #sprite:phong_exhaust
--> DONE
 
-// ----------- Thảo luận tại phòng trọ ----------
-=== ch1_Discuss_1 ===
-{ talked_discuss == false:
-    ~ talked_discuss = true
-    -> ch1_Discuss_1_FirstTime
-- else:
-    -> ch1_Discuss_1_Repeat
-}
-
-=== ch1_Discuss_1_FirstTime ===
 Để tao lên thư viện kiếm ý tưởng. #speaker:Nam #sprite:nam_talk
 Mày ở nhà lên mạng kiếm đê, biết đâu kiếm được ý tưởng hay thì sao? #speaker:Nam #sprite:nam_talk
 
@@ -135,12 +128,6 @@ Oke! Có gì tao gọi lại. #speaker:Phong #sprite:phong_talk
 
 Kay. #speaker:Nam #sprite:nam_talk
 -> DONE
-
-=== ch1_Discuss_1_Repeat ===
-Về nhớ mua gì ăn cho hai đứa nhá!! #speaker:Phong #sprite:phong_smile
--> DONE
-
-// ----------- Cutscene chạy đến thư viện (hallway 1) ----------
 
 // ----------- Tại map1 hallway 1 ----------
 === ch1_HallWay_1 ===
@@ -152,7 +139,7 @@ Về nhớ mua gì ăn cho hai đứa nhá!! #speaker:Phong #sprite:phong_smile
 }
 
 === ch1_Talked_Libarian_FirstTime ===
-Em đến kiếm sách gì à? #speaker:Thủ thư #sprite:libarian_talk
+Em đến tìm kiếm sách gì à? #speaker:Thủ thư #sprite:libarian_talk
 Thư viện có tủ sách nào liên quan đến công nghệ thông tin không ạ? #speaker:Nam #sprite:nam_talk
 Hmm... #speaker:Thủ thư #sprite:libarian_talk
 Em kiểm tra thử dãy sách ở hành lang nha. #speaker:Thủ thư #sprite:libarian_talk
@@ -163,8 +150,6 @@ Vâng, em cảm ơn chị. #speaker:Thủ thư #sprite:libarian_talk
 === ch1_Talked_Libarian_Repeat ===
 Có nhiều sách mới nhập về, em xem thử có sách của em không? #speaker:Thủ thư #sprite:libarian_talk
 -> DONE
-
-// ----------- Bước vô map1 level1 ----------
 
 // ----------- Trong map1 hallway2 ----------
 === ch1_HallWay_2 ===
@@ -201,7 +186,7 @@ Mình nên lấy cuốn nào đây ta? #speaker:Nam #sprite: nam_talk
     + [Hướng dẫn xây dựng thế giới từ 0 và 1]
     ~ chose_book3 = true
     Ra đây là sách hướng dẫn lập trình game à!? #speaker:Nam #sprite:nam_thinking
-    Cũng thú vị, để mang vể đọc thử #speaker:Nam #sprite:nam_thinking
+    Cũng thú vị, để mang vể đọc thử. #speaker:Nam #sprite:nam_thinking
     -> ch1_After_Choose_Book
 }
 
@@ -213,14 +198,12 @@ Dark Soup 3 mới ra mắt, chơi luôn không cu. #speaker:Phong #sprite:phong_
 Nghe nói game lần này giải đố nhiều lắm đấy! #speaker:Phong #sprite:phong_talk
 Uầy hay, tao với mày đợi game cũng phải nửa năm rồi đấy!! #speaker:Nam #sprite:nam_talk
 Đợi tao về chơi luôn, tao cấm mày chơi trước!! #speaker:Nam #sprite:nam_talk
-OKê #speaker:Phong #sprite:phong_smile
+OKê! #speaker:Phong #sprite:phong_smile
 -> DONE
 
 === ch1_HallWay_2_Repeat ===
 Có một cuốn sách bị thiếu trên kệ có lẽ đang nằm trong tay bạn.
 -> DONE
-
-// ----------- Bước vô map1 level2 ----------
 
 // ----------- Trong map1 hallway3 ----------
 === ch1_HallWay_3 ===
@@ -238,16 +221,18 @@ Có rồi chị ơi. #speaker:Nam #sprite: nam_talk
 Hướng dẫn làm game à, làm chị nhớ đến khoá trước cũng có người làm đồ án game. #speaker: Thủ thư #sprite: libarian_smile
 ... #speaker:Nam #sprite:nam_thinking
 // them cau dan
-Của em đây nha, nhớ trả sách vào tuần sau nhe #speaker:Thủ thư #sprite:libarian_talk
+// TODO: Thêm lý do lởn vởn quanh đây
+Của em đây nha, nhớ trả sách vào tuần sau nhé. #speaker:Thủ thư #sprite:libarian_talk
 Em cảm ơn chị! #speaker:Nam #sprite: nam_talk
 -> DONE
 
 === ch1_HallWay_3_Repeat ===
-Nhớ trả sách vào tuần sau nhes. #speaker:Thủ thư #sprite:libarian_talk
+Nhớ trả sách vào tuần sau nhé. #speaker:Thủ thư #sprite:libarian_talk
+-> DONE
 
-// ----------- Bước vô map1 level3 ----------
 
 // ----------- Tại đích ----------
+=== ch1_At_Goal ===
 _"Ring Ring!!!"_
 Về chưa đấy. #speaker:Phong #sprite:phong_talk
 Không về nhanh cẩn thận tao chơi trước đấy nhá. #speaker:Phong #sprite:phong_talk
@@ -302,7 +287,7 @@ Hay là... #speaker:Nam #sprite:nam_thinking
 Tao thấy nó thú vị đấy chứ. #speaker:Nam #sprite:nam_talk
 ... #speaker:Phong #sprite:phong_surprise
 ... #speaker:Phong #sprite:phong_thinking
-... #speaker:Phong #sprite:phong_smile
+... #speaker:Phong #sprite:phong_surprise
 Tao cũng thấy ý tưởng thú vị đấy. #speaker:Phong #sprite:phong_smile
 Biết đâu sau này có người khác lại chơi game của tụi mình. #speaker:Phong #sprite:phong_smile
 Thế bắt đầu từ đâu đây? #speaker:Phong #sprite:phong_talk
@@ -314,6 +299,7 @@ Sau đó mới tới map với cốt truyện. #speaker:Nam #sprite:nam_talk
 ... #speaker:Nam #sprite:nam_smile
 ... #speaker:Phong #sprite:phong_smile
 -> DONE
+
 // ----------- Nhặt được vật phẩm ----------
 === ch1_GetItem ===
 Bạn vừa nhặt được 1 vật phẩm.
