@@ -14,11 +14,11 @@ VAR chose_book3 = false
 -> ch1_Start
 // ----------- Cutscene đầu ch1 ----------
  
- === ch1_Start ===
- -> ch1_InRoom
+=== ch1_Start ===
+-> ch1_InRoom
  
- === ch1_InRoom ===
- Màn hình máy tính sáng lên trong căn phòng trọ bao bọc trong tĩnh lặng và bóng tối. Chỉ có tiếng nhạc game đơn điệu phát ra từ máy tính cùng âm thanh gõ bàn phím lạch cạch của Nam. #bg:dom
+=== ch1_InRoom ===
+Màn hình máy tính sáng lên trong căn phòng trọ bao bọc trong tĩnh lặng và bóng tối. Chỉ có tiếng nhạc game đơn điệu phát ra từ máy tính cùng âm thanh gõ bàn phím lạch cạch của Nam. #bg:dom
 
 Thực tập xong rồi. Môn cũng hết rồi. #speaker:Nam #sprite:nam_thinking
 Mọi thứ đáng lẽ phải nhẹ nhõm hơn chứ? #speaker:Nam #sprite:nam_thinking
@@ -33,57 +33,56 @@ Cứ chơi thêm một ván nữa. Rồi lại một ván nữa. #bg: black
 Cái cảm giác vô định này... #speaker:Nam #sprite:nam_bored
 Mình ko thích nó!! #speaker:Nam #sprite: nam_angry
 Haizzzzz...Chán vậy nhể!!! #speaker:Nam #sprite:nam_bored #bg:dom
--> ch1_Discord
+// -> ch1_Discord
+-> ch1_touch_grass
 
 === ch1_Window ===
 Sau khi kéo rèm cửa có tia sáng chiếu rọi khắp phòng trải lên khuôn mặt Nam một ánh vàng với nét mặt buồn vì chán khi mất dần động lực. #bg:dom_pull_curtain
 Mình đang làm gì với đời vậy nhờ?? #speaker:Nam #sprite:nam_thinking 
-// TODO: Nam quyết định touch grass
-    -> ch1_Interact_Phone
+-> ch1_touch_grass
+
+// TODO: Knot: touch grass
+-> DONE
     
 // ----------- Tại lobby tương tác với điện thoại ----------
-=== ch1_Interact_Phone ===
+=== ch1_lobby1 ===
 { interact_phone == false:
     ~ interact_phone = true
-    -> ch1_Discord
+    -> ch1_lobby1_phone
 - else:
-    -> ch1_Interact_Phone_Repeat
+    -> ch1_lobby1_phone_repeat
 }
-=== ch1_Discord ===
+=== ch1_lobby1_phone ===
 _"Ting!!!!!"_
 "Bạn có một thông báo mới từ Discord." #bg:black_with_phone
 "Êy cu, làm đồ án tốt nghiệp với tao ko?" #speaker:Phong 
 "Đằng nào tao với mày cũng xong mấy môn sớm," #speaker:Phong 
-"Thì tại sao hai tụi mình ko làm đồ án sớm luôn chứ nhỉ??" #speaker:Phong 
--> ch1_Think
+"Thì tại sao hai tụi mình ko làm đồ án sớm luôn chứ nhỉ??" #speaker:Phong
 
-=== ch1_Think ===
 Uầyyy!!! Nó rủ mình làm đồ án chung này. #speaker:Nam #sprite:nam_surprise
 Cơ mà mình lỡ thất bại thì sao? #speaker:Nam #sprite:nam_thinking
 Nếu mình ko đủ giỏi thì sao? #speaker:Nam #sprite:nam_thinking
 #speaker:Nam
 Lỡ mà kéo nó xuống chung với mình thì sao? #speaker:Nam #sprite:nam_thinking
--> ch1_Decision
 
-=== ch1_Decision ===
 "Quen mày lâu rồi, tao hiểu tính mày nên tao mới rủ đấy" #speaker:Phong
 "Chứ mấy đứa khác tao không yên tâm. Làm đồ án chung mà không hợp cạ mệt lắm" #speaker:Phong
 "Thế chú có tính làm ko?" #speaker:Phong 
 + [Đồng ý]
-    -> ch1_Accept
+    -> ch1_lobby1_phone_decision
     
 + [Lưỡng lự]
     ... #speaker:Nam #sprite:nam_confused
     Đằng nào cũng đang rảnh chán. #speaker:Nam #sprite:nam_talk
-    -> ch1_Accept
+    -> ch1_lobby1_phone_decision
     
-=== ch1_Accept ===
+=== ch1_lobby1_phone_decision ===
 "Kay" #speaker:Nam #sprite:nam_smile
 "Công việc thế nào hả, cộng sự" #speaker:Nam #sprite:nam_smile
 ~ accept_invitation = true
 -> DONE
 
-=== ch1_Interact_Phone_Repeat ===
+=== ch1_lobby1_phone_repeat ===
 Hiện tại bạn có 0 thông báo.
 -> DONE
 
@@ -298,6 +297,7 @@ Sau đó mới tới map với cốt truyện. #speaker:Nam #sprite:nam_talk
 
 ... #speaker:Nam #sprite:nam_smile
 ... #speaker:Phong #sprite:phong_smile
+// TODO: dan sang chapter 2
 -> DONE
 
 // ----------- Nhặt được vật phẩm ----------
